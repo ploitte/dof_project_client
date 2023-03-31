@@ -1,0 +1,55 @@
+<div fxLayout="column" class="layout-padd" fxLayoutGap="10px">
+
+    <mat-form-field appearance="outline" fxFlex>
+        <!-- <mat-label>Rechercher un objet</mat-label> -->
+        <input matInput placeholder="Ex: Botte harry" [(ngModel)]="inputValue" (change)="getEquipmentsByName()"
+            #searchEquipmentInput>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center">
+
+        <div *ngFor="let equip of equipments" fxFlex="25" class="padd-grid">
+
+            <div class="equipment-card clicked secondary" fxLayout="column" fxLayoutGap="10px" fxFlex>
+
+                <!-- Titre lvl -->
+                <div fxLayout="row">
+
+                    <img src="{{equip.imgUrl}}" style="height: 80px;" referrerpolicy="no-referrer">
+
+                    <div fxLayout="column" fxLayoutAlign="space-between" fxFlex>
+
+                        <div style="text-align: end;">
+                            <span class="mat-subheading-1 boldest">{{equip.name}}</span>
+                        </div>
+
+                        <div fxLayoutAlign="end center">
+                            <div class="boldest primary vignette-lvl text-center">lvl
+                                {{equip.level}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Recette - Stats -->
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div class="vignette-card bordered text-center" fxFlex>Recette</div>
+                    <div class="vignette-card bordered text-center" fxFlex>Stats</div>
+                </div>
+
+                <!-- Multiple  option icons -->
+                <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+                    <span class="golded-ico material-icons" style="font-size: 20px;">add</span>
+                    <span class="golded-ico material-icons" style="font-size: 20px;" (click)="newTrade(equip)">paid</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,179 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./custom-theme.scss";
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: rgb(250, 250, 250);
+    font-family: "Helvetica Neue", sans-serif !important;
+}
+
+span,
+p,
+a,
+h1,
+h2,
+h3,
+h4 {
+    margin: 0 !important;
+    line-height: initial !important;
+    text-decoration: none !important;
+}
+
+.primary {
+    background-color: $primary !important;
+}
+
+.primary-ico {
+    color: $primary !important;
+}
+
+.secondary {
+    background-color: $secondary !important;
+}
+
+.secondary-ico {
+    color: $secondary !important;
+}
+
+.great {
+    background-color: $great !important;
+}
+
+.great-ico {
+    color: $great !important;
+}
+
+.whited {
+    background: white;
+}
+
+.whited-ico {
+    color: white;
+}
+
+.blacked {
+    background: black;
+}
+
+.blacked-ico {
+    color: black;
+}
+
+.golded {
+    background-color: goldenrod;
+}
+
+.golded-ico {
+    color: goldenrod;
+}
+
+.fill-rest {
+    flex: 1 1;
+}
+
+.full-w {
+    width: 100%;
+}
+
+.scrollable {
+    overflow: auto;
+}
+
+.layout-padd {
+    padding: 20px;
+}
+
+.layout-padd-coast {
+    padding: 0 20px 0 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.clicked {
+    cursor: pointer;
+}
+
+.boldest {
+    font-weight: bolder;
+}
+
+.bordered {
+    border: 1px solid grey;
+}
+
+.padd-grid {
+    padding: 0 10px 10px 0 !important;
+}
+
+.input-nopadd {
+    margin-bottom: -1.25em !important;
+}
+
+/* Scrollbar*/
+
+.scrolled {
+    overflow: auto;
+}
+
+.scrolled-x {
+    overflow-x: auto;
+}
+
+.scrolled-y {
+    overflow-y: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $secondary;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $primary;
+}
+
+@media (max-width: 767px) {
+    .layout-padd {
+        padding: 10px;
+    }
+
+    .layout-padd-coast {
+        padding: 0 10px 0 10px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+}
+
+/** Custom over icons */
+
+.delete-btn:hover {
+    color: $primary;
+}
+
+.edit-btn:hover {
+    color: $great;
+}
+
+.mat-form-field-wrapper {
+    padding: 0;
+}

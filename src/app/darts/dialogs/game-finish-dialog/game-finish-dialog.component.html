@@ -1,0 +1,50 @@
+<div fxLayout="column" style="width: 400px;" fxLayoutGap="20px" fxLayoutAlign="center center">
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div style="font-size: 30px;">Partie terminée</div>
+    </div>
+
+    <div fxLayout="column" class="full-w">
+
+        <div fxLayout="row" fxFlex fxLayoutAlign="space-between">
+            <div>ROUND</div>
+            <div>{{game.round}}</div>
+        </div>
+
+        <div fxLayout="row" fxFlex fxLayoutAlign="space-between">
+            <div>MPR</div>
+            <div>{{game.mpr}}</div>
+        </div>
+
+        <div fxLayout="row" fxFlex fxLayoutAlign="space-between">
+            <div>PPT</div>
+            <div>{{game.ppt}}</div>
+        </div>
+
+        <div fxLayout="row" fxFlex fxLayoutAlign="space-between">
+            <div>RATING</div>
+            <div>{{game.rating}}</div>
+        </div>
+
+
+        <div fxLayout="row" fxFlex fxLayoutAlign="space-between">
+            <div>FLECHES MISS</div>
+            <div>{{totalMissedShoots}} / {{totalShoots}} ({{percentMissed}}%)</div>
+        </div>
+
+        <div fxLayout="row" fxFlex fxLayoutAlign="space-between">
+            <div>NB FAVORIS</div>
+            <div>{{game.mpr}}</div>
+        </div>
+
+        <div fxLayout="row" fxFlex fxLayoutAlign="space-between">
+            <div>NB BETE NOIRE</div>
+            <div>{{game.ppt}}</div>
+        </div>
+
+
+
+    </div>
+
+
+</div>

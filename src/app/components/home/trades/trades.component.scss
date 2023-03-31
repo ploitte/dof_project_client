@@ -1,0 +1,27 @@
+@import "../../../../styles/custom-theme.scss";
+
+.trade-card {
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.vignette-lvl {
+    width: 80px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.sold {
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.sort-vignette {
+    padding: 4px 6px 4px 6px;
+    border-radius: 5px;
+}
+
+.sort-selected {
+    background-color: $great;
+    font-weight: bolder;
+}

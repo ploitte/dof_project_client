@@ -1,0 +1,26 @@
+<mat-drawer-container fxFlexFill>
+
+    <mat-drawer mode="side" opened style="width: 20%;">
+
+        <mat-selection-list [multiple]="false">
+            <mat-list-option *ngFor="let page of pageList" [selected]="page.selected" (click)="changePage(page.url)">
+                {{page.name}}
+            </mat-list-option>
+        </mat-selection-list>
+
+        <div fxLayoutAlign="center center">
+            <a class="golded-ico boldest" href="https://touch.dofusbook.net/fr/">Dofus-book</a>
+        </div>
+
+
+    </mat-drawer>
+
+
+    <mat-drawer-content>
+
+        <router-outlet></router-outlet>
+
+    </mat-drawer-content>
+
+
+</mat-drawer-container>

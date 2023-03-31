@@ -1,0 +1,30 @@
+.door-card {
+    padding: 20px;
+    border: 1px dashed grey;
+}
+
+.line {
+    border: 1px solid grey;
+}
+
+.border-dash {
+    border-bottom: 1px dashed grey;
+}
+
+.rounds-fixed {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.darts-fixed {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+.back-fixed{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

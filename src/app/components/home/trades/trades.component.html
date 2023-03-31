@@ -1,0 +1,343 @@
+<div fxLayout="column">
+
+    <div fxLayout="row" fxLayoutAlign="space-around" class="full-w secondary">
+
+        <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center" class="layout-padd">
+
+            <div>Total</div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>Nb d'items</div>
+                <div class="golded-ico">{{totalTrade | pricePack}}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>Investissement</div>
+                <div class="golded-ico">{{totalInvest | pricePack}} K</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>En tout</div>
+                <div class="golded-ico">{{totalTot | pricePack}} K</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>Bénéfices nets</div>
+                <div class="golded-ico boldest">{{totalBenefice | pricePack}} K</div>
+            </div>
+
+
+        </div>
+
+        <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center" class="layout-padd">
+            <div>En cours</div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>Nb d'items</div>
+                <div class="golded-ico">{{waitingTrade | pricePack}}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>Investissement</div>
+                <div class="golded-ico">{{waitingInvest | pricePack}} K</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>En tout</div>
+                <div class="golded-ico">{{waitingTot | pricePack}} K</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>Bénéfices nets</div>
+                <div class="golded-ico boldest">{{waitingBenefice | pricePack}} K</div>
+            </div>
+
+        </div>
+
+        <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center" class="layout-padd">
+            <div>Vendu</div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between" class="full-w">
+                <div>Nb d'items</div>
+                <div class="golded-ico">{{soldTrade | pricePack}}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between" class="full-w">
+                <div>Investissement</div>
+                <div class="golded-ico">{{soldInvest | pricePack}} K</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-w">
+                <div>En tout</div>
+                <div class="golded-ico">{{soldTot | pricePack}} K</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between" class="full-w">
+                <div>Bénéfices nets</div>
+                <div class="golded-ico boldest">{{soldBenefice | pricePack}} K</div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="10px" class="layout-padd" style="padding-bottom: 0;">
+
+        <div fxLayout="row" fxLayoutGap="10px" #searchFiltersBar>
+            <div fxLayoutAlign="center center">Trier par: </div>
+            <div class="sort-vignette bordered clicked" [class.sort-selected]="(sortSelected | async) === 1"
+                (click)="setSelectedSort(1)">Nom
+            </div>
+            <div [class.sort-selected]="(sortSelected | async) === 2" class="sort-vignette bordered clicked"
+                (click)="setSelectedSort(2)">Vendu</div>
+            <div class="sort-vignette bordered clicked" [class.sort-selected]="(sortSelected | async) === 3"
+                (click)="setSelectedSort(3)">Prix de
+                craft</div>
+            <div class="sort-vignette bordered clicked" [class.sort-selected]="(sortSelected | async) === 4"
+                (click)="setSelectedSort(4)">Prix de
+                vente</div>
+            <div class="sort-vignette bordered clicked" [class.sort-selected]="(sortSelected | async) === 5"
+                (click)="setSelectedSort(5)">Bénéfice
+                net</div>
+            <div class="sort-vignette bordered clicked" [class.sort-selected]="(sortSelected | async) === 6"
+                (click)="setSelectedSort(6)">Bénéfice
+                net%</div>
+
+            <div class="sort-vignette bordered clicked" [class.sort-selected]="(sortSelected | async) === 7"
+                (click)="setSelectedSort(7)" fxLayoutAlign="center center"> <span>Top vente&nbsp;</span> <span
+                    class="great-ico material-icons" style="font-size: 18px;">trending_up</span>
+            </div>
+
+        </div>
+
+        <mat-form-field appearance="outline" fxFlex>
+            <input matInput placeholder="Ex: Botte harry" [(ngModel)]="searchTrade" (change)="searchTradeByName()">
+            <button *ngIf="searchTrade" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearch()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+
+    </div>
+
+
+    <!-- Trades -->
+    <div class="layout-padd scrolled" *ngIf="!showSearchTrades">
+
+        <div fxLayout="row wrap">
+
+            <div fxLayout="row" *ngFor="let trade of trades" class="padd-grid">
+
+                <div class="trade-card secondary">
+
+                    <!-- Card img -->
+                    <div fxLayout="column" fxLayoutAlign="space-around">
+                        <div class="boldest">
+                            {{trade.equipment.name}}
+                        </div>
+                        <div>
+                            <img src="{{trade.equipment.imgUrl}}" style="height: 80px;" referrerpolicy="no-referrer">
+                        </div>
+                        <div class="boldest primary vignette-lvl text-center">lvl
+                            {{trade.equipment.level}}
+                        </div>
+                    </div>
+
+                    <div fxFlex></div>
+
+                    <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px" fxFlex="60">
+
+                        <div fxLayout="row" fxLayoutAlign="end center">
+
+                            <div class="full-w">
+
+                                <div fxLayout="row" fxLayoutAlign="space-between">
+
+                                    <div>
+                                        <span>Prix de craft:</span>
+                                    </div>
+
+                                    <div class="golded-ico"> {{trade.crafting_price | pricePack}}
+                                        K</div>
+
+                                </div>
+
+                                <div fxLayout="row" fxLayoutAlign="space-between">
+
+                                    <div>
+                                        <span>Prix de vente:</span>
+                                    </div>
+
+                                    <div class="golded-ico"> {{trade.selling_price | pricePack}}
+                                        K</div>
+
+                                </div>
+
+                                <div fxLayout="row" class="boldest" fxLayoutAlign="space-between">
+
+                                    <div>
+                                        <span>Bénéfices nets</span>
+                                    </div>
+
+                                    <div class="golded-ico"> {{(trade.selling_price - trade.crafting_price)| pricePack}}
+                                        K</div>
+
+                                </div>
+
+
+                                <div fxLayout="row" class="mat-caption" fxLayoutAlign="end center" fxLayoutGap="5px"
+                                    style="padding-top: 5px;">
+
+                                    <div style="font-size: 14px;" class="great-ico">
+                                        {{(((trade.selling_price -
+                                        trade.crafting_price) /
+                                        trade.crafting_price) *100 | rounded)}}%
+                                    </div>
+
+                                    <span class="great-ico material-icons" style="font-size: 18px;">trending_up</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="space-between">
+
+                            <div fxLayout="row" fxLayoutAlign="start end">
+
+                                <div class="sold great-ico" style="padding: 5px;" *ngIf="trade.sold">Vendu</div>
+                                <button mat-raised-button class="great" *ngIf="!trade.sold"
+                                    (click)="tradeSolded(trade)">Vendu</button>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="end end">
+                                <span class="whited-ico material-icons clicked" *ngIf="trade.sold"
+                                    (click)="tradeCanceled(trade)">settings_backup_restore</span>
+                                <span class="primary-ico material-icons clicked" (click)="deleteTrade(trade)"
+                                    *ngIf="!trade.sold">delete</span>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Search trades -->
+    <div class="layout-padd scrolled" *ngIf="showSearchTrades">
+
+        <div fxLayout="row wrap">
+
+            <div fxLayout="row" fxFlex="50" *ngFor="let trade of searchTrades" class="padd-grid">
+
+                <div class="trade-card secondary" fxFlex>
+
+                    <!-- Card img -->
+                    <div fxLayout="column" fxLayoutAlign="space-around">
+                        <div class="boldest">
+                            {{trade.equipment.name}}
+                        </div>
+                        <div>
+                            <img src="{{trade.equipment.imgUrl}}" style="height: 80px;" referrerpolicy="no-referrer">
+                        </div>
+                        <div class="boldest primary vignette-lvl text-center">lvl
+                            {{trade.equipment.level}}
+                        </div>
+                    </div>
+
+                    <div fxFlex></div>
+
+                    <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px" fxFlex="60">
+
+                        <div fxLayout="row" fxLayoutAlign="end center">
+
+                            <div class="full-w">
+
+                                <div fxLayout="row" fxLayoutAlign="space-between">
+
+                                    <div>
+                                        <span>Prix de craft:</span>
+                                    </div>
+
+                                    <div class="golded-ico"> {{trade.crafting_price | pricePack}}
+                                        K</div>
+
+                                </div>
+
+                                <div fxLayout="row" fxLayoutAlign="space-between">
+
+                                    <div>
+                                        <span>Prix de vente:</span>
+                                    </div>
+
+                                    <div class="golded-ico"> {{trade.selling_price | pricePack}}
+                                        K</div>
+
+                                </div>
+
+                                <div fxLayout="row" class="boldest" fxLayoutAlign="space-between">
+
+                                    <div>
+                                        <span>Bénéfices nets:</span>
+                                    </div>
+
+                                    <div class="golded-ico"> {{(trade.selling_price - trade.crafting_price)| pricePack}}
+                                        K</div>
+
+                                </div>
+
+                                <div fxLayout="row" class="mat-caption" fxLayoutAlign="end center" fxLayoutGap="5px"
+                                    style="padding-top: 5px;">
+
+                                    <div style="font-size: 14px;" class="great-ico">
+                                        {{(((trade.selling_price -
+                                        trade.crafting_price) /
+                                        trade.crafting_price) *100 | rounded)}}%
+                                    </div>
+
+                                    <span class="great-ico material-icons" style="font-size: 18px;">trending_up</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="space-between">
+
+                            <div fxLayout="row" fxLayoutAlign="start end">
+
+                                <div class="sold great-ico" style="padding: 5px;" *ngIf="trade.sold">Vendu</div>
+                                <button mat-raised-button class="great" *ngIf="!trade.sold"
+                                    (click)="tradeSolded(trade)">Vendu</button>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="end end">
+                                <span class="whited-ico material-icons clicked" *ngIf="trade.sold"
+                                    (click)="tradeCanceled(trade)">settings_backup_restore</span>
+                                <span class="primary-ico material-icons clicked" (click)="deleteTrade(trade)"
+                                    *ngIf="!trade.sold">delete</span>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

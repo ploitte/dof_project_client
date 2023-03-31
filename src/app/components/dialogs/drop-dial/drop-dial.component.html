@@ -1,0 +1,12 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+
+    <img src="{{currDofus.imgUrl}}" height="200px">
+
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Jet..." [(ngModel)]="newDofusDrop.value">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="full-w"
+        [disabled]="!newDofusDrop.value" (click)="createDofusDrop()">Valider</button>
+
+</div>

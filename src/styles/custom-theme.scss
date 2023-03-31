@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+
+// Be sure that you only ever include 'mat-core' mixin once!
+// it should not be included for each theme.
+@include mat-core();
+
+// define a real custom palette (using http://mcg.mbitson.com)
+
+$my-custom-primary: mat-palette($mat-red, 700);
+$my-custom-accent: mat-palette($mat-grey, 800, A100);
+$my-custom-warn: mat-palette($mat-lime);
+
+$primary: #d32f2f;
+$secondary: #424242;
+$great: #4caf50;
+
+$my-custom-theme: mat-dark-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+
+@include angular-material-theme($my-custom-theme);

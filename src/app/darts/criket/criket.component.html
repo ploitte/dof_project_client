@@ -1,0 +1,143 @@
+<div fxLayout="column">
+
+    <!-- Stats header -->
+    <div fxLayout="column" class="layout-padd secondary">
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div class="boldest">GAME STATS</div>
+            <div class="line" fxFlex></div>
+            <div class="boldest">GLOBAL STATS</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div>MPR: <strong>{{cricket.mpr}}</strong></div>
+            <div class="line" fxFlex></div>
+            <div>MPR: <strong>{{globalStats.mpr}}</strong></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div>PPT(Phoenix): <strong>{{cricket.ppt}}</strong></div>
+            <div class="line" fxFlex></div>
+            <div>PPT(Phoenix): <strong>{{globalStats.ppt}}</strong></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div>RATING: <strong>{{cricket.rating}}</strong></div>
+            <div class="line" fxFlex></div>
+            <div>RATING: <strong>{{globalStats.rating}}</strong></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div><button mat-raised-button [class.great]="roundMode === 10" (click)="changeRoundMode(10)">MODE 10
+                    ROUNDS</button> | <button mat-raised-button [class.great]="roundMode === 20"
+                    (click)="changeRoundMode(20)">MODE 20 ROUNDS</button> |
+                <button mat-raised-button class="clicked" [class.great]="roundMode === 0"
+                    (click)="changeRoundMode(0)">MODE FREE</button>
+            </div>
+            <div>NB MATCHS: <strong>{{globalStats.game_played}}</strong></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div></div>
+            <div>Best round: <strong>{{globalStats.bestRoundGame}}</strong></div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div></div>
+            <div>Best Mpr: <strong>{{globalStats.bestMprGame}}</strong></div>
+        </div>
+
+    </div>
+
+
+    <!-- Doors situation header -->
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px" class="full-w layout-padd"
+        style="position: relative;">
+
+        <!-- Back / Restart -->
+        <div fxLayout="row" fxLayoutGap="10px" class="back-fixed">
+            <span class="material-icons clicked" style="font-size: 35px;" (click)="back()">history</span>
+            <span class="material-icons primary-ico clicked" style="font-size: 35px;" (click)="restart()">delete</span>
+        </div>
+
+        <!-- Rounds/Darts -->
+        <div class="rounds-fixed" fxLayout="column" fxLayoutGap="10px">
+            <div style="font-size: 20px;">Round: {{cricket.round}}</div>
+            <div fxLayout="row" fxLayoutGap="10px">
+                <span class="material-icons" style="font-size: 35px;"
+                    *ngFor="let dart of [].constructor(cricket.dartsNumber);">rocket</span>
+            </div>
+        </div>
+
+
+        <!-- Score -->
+        <div style="font-size: 30px;" class="golded-ico">{{cricket.roundPoints}}</div>
+
+        <!-- Doors -->
+        <div fxLayout="row">
+
+            <div *ngFor="let door of cricket.doors" fxFlex="100/cricket.doors.length" fxLayout="column"
+                fxLayoutGap="20px">
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div style="font-size: 30px;">{{door.number}}</div>
+                </div>
+
+                <div fxLayoutAlign="center center">
+                    <span class="material-icons" style="font-size: 80px; opacity: 0.02;"
+                        *ngIf="door.value === 0">radio_button_unchecked</span>
+
+                    <span class="material-icons" style="font-size: 80px; color:red;"
+                        *ngIf="door.value === 1">radio_button_unchecked</span>
+                    <span class="material-icons" style="font-size: 80px; color:orange;"
+                        *ngIf="door.value === 2">mode_standby</span>
+                    <span class="material-icons great-ico" style="font-size: 80px;"
+                        *ngIf="door.value === 3">crisis_alert</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div fxLayout="row wrap" class="layout-padd">
+
+        <div fxLayout="row" fxFlex="25" *ngFor="let door of cricket.doors" class="padd-grid">
+
+            <div class="door-card" fxLayout="column" fxLayoutGap="20px" fxFlex>
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div style="font-size: 30px;">{{door.number}}</div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+
+                    <button mat-raised-button color="secondary" style="height: 100px;" fxFlex
+                        *ngFor="let pointType of pointTypes | pointType:door.number"
+                        (click)="getAndUpdateDoor(door.number, pointType)">{{pointType.name}}</button>
+
+                </div>
+
+                <button mat-raised-button color="primary" style="height: 60px;"
+                    (click)="getAndUpdateDoor(door.number, {name:'miss', value:0}, true)">Miss</button>
+
+            </div>
+
+        </div>
+
+        <div fxLayout="row" fxFlex="25" class="padd-grid" *ngIf="gameFinished">
+
+            <div class="door-card" fxLayoutAlign="center center" fxFlex>
+                <button mat-raised-button class="great" (click)="saveFinishedGame()">Enregistrer la partie</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

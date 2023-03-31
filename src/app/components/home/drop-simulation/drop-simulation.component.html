@@ -1,0 +1,80 @@
+<div fxLayout="column" class="layout-padd">
+
+    <!-- Inputs -->
+    <div fxLayout="column" class="layout-padd">
+        <input type="number" placeholder="Prospection perso 1..." [(ngModel)]="perso1">
+        <input type="number" placeholder="Prospection perso 2..." [(ngModel)]="perso2">
+        <input type="number" placeholder="Prospection perso 3..." [(ngModel)]="perso3">
+        <input type="number" placeholder="Prospection perso 4..." [(ngModel)]="perso4">
+        <div fxLayout="row" fxLayoutGap="5px" class="full-w">
+            <input type="number" placeholder="Challenge%..." [(ngModel)]="challPercent">
+            <div>Challs%</div>
+        </div>
+        <mat-checkbox color="primary" [(ngModel)]="bonusPack">
+            Bonus pack (+150%)
+        </mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="bonusAlliance">
+            Zone alliance (+25%)
+        </mat-checkbox>
+        <button mat-raised-button class="great" (click)="calculPercents()">Calculer</button>
+    </div>
+
+    <div fxLayout="column" class="layout-padd">
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div>TUTU</div>
+            <div>1/{{tutuPercent}}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div>POURPRE</div>
+            <div>1/{{pourprePercent}}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div>EMERAUDE</div>
+            <div>1/{{emeraudePercent}}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div>VULBIS</div>
+            <div>1/{{vulbisPercent}}</div>
+        </div>
+
+    </div>
+
+    <div fxLayout="row wrap" class="layout-padd">
+
+        <div fxLayout="row">
+            <mat-form-field class="example-form-field">
+                <mat-label>Prix de vente pourpre</mat-label>
+                <input matInput type="number" [(ngModel)]="prprPrice">
+            </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="example-form-field">
+                <mat-label>Prix d'une capture pourpre</mat-label>
+                <input matInput type="number" [(ngModel)]="prprPriceCapture">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="example-form-field">
+                <mat-label>Temps par capture</mat-label>
+                <input matInput type="number" [(ngModel)]="prprTimeCapture">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field class="example-form-field">
+                <mat-label>Tarif 1mK/€</mat-label>
+                <input matInput type="number" [(ngModel)]="kamasEuro">
+            </mat-form-field>
+        </div>
+
+        <div class="boldest" style="font-size: 30px;">{{moneyHourPourpre}}€/h</div>
+    </div>
+
+</div>

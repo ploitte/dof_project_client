@@ -1,0 +1,85 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+
+    <!-- Equip card / Caracteristiques -->
+    <div fxLayout="row" class="full-w">
+
+        <!-- Equipement card -->
+        <div class="equipment-card clicked secondary" fxLayout="column" fxLayoutGap="10px" fxFlex="50">
+
+            <!-- Titre lvl -->
+            <div fxLayout="row">
+
+                <img src="{{currEquipment.imgUrl}}" style="height: 100px;" referrerpolicy="no-referrer">
+
+                <div fxLayout="column" fxLayoutAlign="space-between" fxFlex>
+
+                    <div style="text-align: end;">
+                        <span class="mat-subheading-1 boldest">{{currEquipment.name}}</span>
+                    </div>
+
+                    <div fxLayoutAlign="end center">
+                        <div class="boldest primary vignette-lvl text-center">lvl
+                            {{currEquipment.level}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div fxLayoutAlign="center center" fxFlex>
+            <span>Ici les caractéristiques</span>
+        </div>
+
+    </div>
+
+    <!-- Ingredients -->
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="start start">
+
+        <div *ngFor="let ingredient of currEquipment.recipe; let i = index;" fxLayout="row" fxLayoutGap="20px"
+            class="full-w">
+
+            <div fxLayoutAlign="start center">
+                <img src="{{ingredient.imgUrl}}" style="height: 22px;" referrerpolicy="no-referrer"
+                    onerror="this.src='assets/images/error.png';">
+            </div>
+
+            <div fxLayoutAlign="start center">
+                <span>{{ingredient.name}}</span>
+            </div>
+
+            <div fxFlex></div>
+
+            <div class="golded-ico boldest text-center" style="border-radius: 5px;" fxFlex="8">
+                {{ingredient.quantity}}
+            </div>
+
+            <input type="number" style="width:70px" placeholder="Prix..." [(ngModel)]="ingredient.price"
+                (change)="getEstimationPrice($event)">
+
+        </div>
+
+    </div>
+
+    <!-- Estimation price -->
+    <div fxLayout="row" fxLayoutAlign="end center" class="full-w">
+        <span>Estimation du prix: <strong class="boldest golded-ico">{{estimationPrice | pricePack}} K</strong></span>
+    </div>
+
+    <div fxLayout="row" class="full-w" fxLayoutGap="10px">
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="Prix du craft" [(ngModel)]="newTrade.crafting_price">
+            <mat-icon matSuffix>paid</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="Prix de vente" [(ngModel)]="newTrade.selling_price">
+            <mat-icon matSuffix>paid</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" class="full-w"
+        [disabled]="!newTrade.selling_price && newTrade.crafting_price || disabledButton" (click)="createTrade()">Valider</button>
+
+</div>

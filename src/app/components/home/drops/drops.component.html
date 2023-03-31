@@ -1,0 +1,45 @@
+<div fxLayout="column">
+
+    <!-- Dofus list -->
+    <div fxLayout="row wrap" fxLayoutAlign="center center" class="layout-padd">
+
+        <!-- Vignette dofus -->
+        <div *ngFor="let dofus of dofusList" class="clicked padd-grid">
+
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <img src="{{dofus.imgUrl}}" style="height: 200px;" referrerpolicy="no-referrer"
+                    (click)="newDrop(dofus)">
+                    <span class="boldest" style="font-size: 30px;">{{dofus.count}}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="layout-padd">
+        <span class="boldest" style="font-size: 30px;">Total: {{totalDrops}}</span>
+    </div>
+
+
+    <!-- Drops list -->
+
+    <div fxLayout="column" class="layout-padd">
+
+        <div *ngFor="let drops of dropsList" fxLayout="row wrap">
+
+            <!-- Drop line -->
+            <div  *ngFor="let drop of drops" class="padd-grid">
+                <div class="secondary bordered" fxFlex fxLayout="column" fxLayoutAlign="center center"
+                    style="position: relative;">
+                    <img src="{{drop.imgUrl}}" style="height: 110px;" referrerpolicy="no-referrer">
+                    <span class="boldest">+{{drop.value}}</span>
+                    <span (click)="deleteDrop(drop)" class="clicked" style="position: absolute; top: 3px; right: 6px;">X</span>
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    </div>
+
+</div>
